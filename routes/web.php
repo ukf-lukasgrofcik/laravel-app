@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\UsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,8 @@ Route::get('/', function () {
 
 Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/', [ DashboardController::class, 'index' ])->name('dashboard.index');
+
+    Route::get('/users', [ UsersController::class, 'index' ])->name('users.index');
 });
 
 Route::get('/login', [ LoginController::class, 'form' ]);
