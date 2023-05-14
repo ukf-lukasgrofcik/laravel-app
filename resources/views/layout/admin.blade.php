@@ -15,7 +15,30 @@
 
     @yield('content')
 
+    @include('admin._partials._delete_confirmation')
+
     <script src="{{ asset('js/admin.min.js') }}"></script>
+    <script type="text/javascript">
+        $(function () {
+            initConfirmDeleteModal();
+        });
+
+        function initConfirmDeleteModal() {
+            let modal = $('#confirm-delete-modal');
+            var form;
+
+            $('.confirm-delete').click(function () {
+                form = $(this).parent();
+
+                modal.find('.entity').html( $(this).data('entity') );
+                modal.modal('show');
+            });
+
+            $('#confirm-delete-button').click(function () {
+                form.submit();
+            });
+        }
+    </script>
 
 </body>
 </html>

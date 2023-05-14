@@ -16,6 +16,7 @@ mix
         'resources/css/bootstrap.min.css',
     ], 'public/css/admin.min.css')
     .scripts([
+        'resources/js/jquery-3.7.0.min.js',
         'resources/js/bootstrap.bundle.min.js',
     ], 'public/js/admin.min.js')
 

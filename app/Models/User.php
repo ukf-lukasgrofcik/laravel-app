@@ -19,6 +19,7 @@ class User extends Authenticatable
         'name',
         'surname',
         'email',
+        'role',
     ];
 
     /**
@@ -30,5 +31,15 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    public function getFullNameAttribute() : string
+    {
+        return "$this->name $this->surname";
+    }
+
+    public function getFormattedRoleAttribute() : string
+    {
+        return config("settings.format.$this->role");
+    }
 
 }
