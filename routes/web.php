@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UsersController;
+use App\Http\Controllers\Admin\CategoriesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,12 +24,11 @@ Route::get('/', function () {
 Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/', [ DashboardController::class, 'index' ])->name('dashboard.index');
 
-    Route::get('/users', [ UsersController::class, 'index' ])->name('users.index');
-    Route::get('/users/create', [ UsersController::class, 'create' ])->name('users.create');
-    Route::post('/users/create', [ UsersController::class, 'store' ])->name('users.store');
-    Route::get('/users/{user}/edit', [ UsersController::class, 'edit' ])->name('users.edit');
-    Route::post('/users/{user}/edit', [ UsersController::class, 'update' ])->name('users.update');
-    Route::post('/users/{user}/destroy', [ UsersController::class, 'destroy' ])->name('users.destroy');
+    // Users
+    Route::resource('users', UsersController::class)->except([ 'show' ]);
+
+    // Blog
+    Route::resource('categories', CategoriesController::class)->except([ 'show' ]);
 });
 
 Route::get('/login', [ LoginController::class, 'form' ]);

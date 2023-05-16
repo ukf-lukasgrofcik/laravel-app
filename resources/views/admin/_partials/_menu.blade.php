@@ -20,7 +20,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="#">Articles</a></li>
-                        <li><a class="dropdown-item" href="#">Categories</a></li>
+                        <li><a class="dropdown-item" href="{{ route('categories.index') }}">Categories</a></li>
                         <li><a class="dropdown-item" href="#">Tags</a></li>
                     </ul>
                 </li>
