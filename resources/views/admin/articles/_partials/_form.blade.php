@@ -18,7 +18,7 @@
     <div class="col-sm-6">
         <label for="category_id" class="form-label">Category</label>
         <select id="category_id" name="category_id" class="form-select {{ $errors->has("category_id") ? 'is-invalid' : '' }}">
-            <option>Choose category</option>
+            <option value>Choose category</option>
             @foreach($categories as $category)
                 <option value="{{ $category->id }}" {{ $category->id == $article->category_id ? 'selected' : '' }}>{{ $category->name }}</option>
             @endforeach
@@ -29,7 +29,6 @@
     <div class="col-sm-6">
         <label for="tags" class="form-label">Tags</label>
         <select id="tags" name="tags" multiple class="form-select {{ $errors->has("tags") ? 'is-invalid' : '' }}">
-            <option>Choose category</option>
             @foreach($tags as $tag)
                 <option value="{{ $tag->id }}" {{ $article->tags->contains('id', $tag->id) ? 'selected' : '' }}>{{ $tag->name }}</option>
             @endforeach

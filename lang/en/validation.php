@@ -185,6 +185,12 @@ return [
         'email' => 'E-mail',
         'password' => 'Password',
         'role' => 'Role',
+        'description' => 'Description',
+        'published' => 'Published',
+        'category_id' => 'Category',
+        'tags' => 'Tags',
+        'tags.*' => 'Tag item',
+        'content' => 'Content',
     ],
 
 ];

@@ -25,7 +25,7 @@ class CreateArticleRequest extends FormRequest
             'name' => 'required|string|max:255',
             'content' => 'required|string',
             'published' => 'required|in:1,0',
-            'category_id' => 'nullable|integer|exists:categories,id',
+            'category_id' => 'nullable|exists:categories,id',
             'tags' => 'nullable|array',
             'tags.*' => 'required|integer|exists:tags,id',
         ];
