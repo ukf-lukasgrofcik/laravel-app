@@ -16,7 +16,7 @@ class TagsController extends Controller
 
     public function index() : View | Application | Factory
     {
-        $tags = Tag::all();
+        $tags = Tag::paginate(10);
 
         return view('admin.tags.index', compact('tags'));
     }

@@ -37,9 +37,9 @@ class User extends Authenticatable
         return "$this->name $this->surname";
     }
 
-    public function getFormattedRoleAttribute() : string
+    public function getFormattedRoleAttribute() : string | null
     {
-        return config("settings.format.$this->role");
+        return $this->role ? config("settings.format.$this->role") : null;
     }
 
 }

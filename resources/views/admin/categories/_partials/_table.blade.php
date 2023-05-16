@@ -41,3 +41,5 @@
     @endforelse
     </tbody>
 </table>
+
+{{ $categories->links() }}

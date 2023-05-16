@@ -13,25 +13,25 @@
     <tbody>
     @forelse($articles as $article)
         <tr>
-            <td>{{ $articles->id }}</td>
-            <td>{{ $articles->name }}</td>
-            <td>{{ str($articles->content)->limit(64) }}</td>
-            <td>{{ $articles->published }}</td>
-            <td>{{ $articles->category?->name ?? 'Bez kategórie' }}</td>
-            <td>{{ $articles->tags->count() }}</td>
+            <td>{{ $article->id }}</td>
+            <td>{{ $article->name }}</td>
+            <td>{{ str($article->content)->limit(64) }}</td>
+            <td>{{ $article->published }}</td>
+            <td>{{ $article->category?->name ?? 'Bez kategórie' }}</td>
+            <td>{{ $article->tags->count() }}</td>
             <td>
                 <div class="dropdown">
                     <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Actions
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{{ route('articles.edit', $articles) }}">Edit</a></li>
+                        <li><a class="dropdown-item" href="{{ route('articles.edit', $article) }}">Edit</a></li>
                         <li>
-                            <form action="{{ route('articles.destroy', $articles) }}" method="post">
+                            <form action="{{ route('articles.destroy', $article) }}" method="post">
                                 @method('DELETE')
                                 @csrf
                                 <button type="button" class="dropdown-item confirm-delete"
-                                        data-entity="{{ "Article $articles->name" }}">
+                                        data-entity="{{ "Article $article->name" }}">
                                     Delete
                                 </button>
                             </form>
@@ -47,3 +47,5 @@
     @endforelse
     </tbody>
 </table>
+
+{{ $articles->links() }}
