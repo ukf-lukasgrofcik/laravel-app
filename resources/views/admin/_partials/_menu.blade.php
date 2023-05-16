@@ -19,7 +19,7 @@
                         Blog
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Articles</a></li>
+                        <li><a class="dropdown-item" href="{{ route('articles.index') }}">Articles</a></li>
                         <li><a class="dropdown-item" href="{{ route('categories.index') }}">Categories</a></li>
                         <li><a class="dropdown-item" href="{{ route('tags.index') }}">Tags</a></li>
                     </ul>
