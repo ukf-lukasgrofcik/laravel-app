@@ -10,6 +10,8 @@
             </div>
         </div>
 
+        @include('admin._partials._alert')
+
         <form action="{{ route('users.update', $user) }}" method="post">
             @method('PUT')
             @include('admin.users._partials._form')

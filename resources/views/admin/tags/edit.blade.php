@@ -10,6 +10,8 @@
             </div>
         </div>
 
+        @include('admin._partials._alert')
+
         <form action="{{ route('tags.update', $tag) }}" method="post">
             @method('PUT')
             @include('admin.tags._partials._form')

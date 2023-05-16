@@ -10,6 +10,8 @@
             </div>
         </div>
 
+        @include('admin._partials._alert')
+
         <div class="row mt-3">
             <div class="col-sm-12">
                 @include('admin.categories._partials._table')

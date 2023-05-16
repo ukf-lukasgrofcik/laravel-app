@@ -10,6 +10,8 @@
             </div>
         </div>
 
+        @include('admin._partials._alert')
+
         <form action="{{ route('categories.update', $category) }}" method="post">
             @method('PUT')
             @include('admin.categories._partials._form')
