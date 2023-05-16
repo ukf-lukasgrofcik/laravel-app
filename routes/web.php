@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\CategoriesController;
+use App\Http\Controllers\Admin\TagsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
 
     // Blog
     Route::resource('categories', CategoriesController::class)->except([ 'show' ]);
+    Route::resource('tags', TagsController::class)->except([ 'show' ]);
 });
 
 Route::get('/login', [ LoginController::class, 'form' ]);
