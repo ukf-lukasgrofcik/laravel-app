@@ -16,7 +16,13 @@
             <td>{{ $article->id }}</td>
             <td>{{ $article->name }}</td>
             <td>{{ str($article->content)->limit(64) }}</td>
-            <td>{{ $article->published }}</td>
+            <td>
+                @if($article->published)
+                    <i class="fa-solid fa-check fa-xl text-success"></i>
+                @else
+                    <i class="fa-solid fa-times fa-xl text-danger"></i>
+                @endif
+            </td>
             <td>{{ $article->category?->name ?? 'Bez kategórie' }}</td>
             <td>{{ $article->tags->count() }}</td>
             <td>
