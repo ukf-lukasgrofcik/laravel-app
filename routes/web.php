@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\CategoriesController;
 use App\Http\Controllers\Admin\TagsController;
 use App\Http\Controllers\Admin\ArticlesController;
 use App\Http\Controllers\Admin\SuppliersController;
+use App\Http\Controllers\Admin\OrdersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +38,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
 
     // Supplies
     Route::resource('suppliers', SuppliersController::class)->except([ 'show' ]);
+    Route::resource('orders', OrdersController::class)->except([ 'show' ]);
 
 });
 

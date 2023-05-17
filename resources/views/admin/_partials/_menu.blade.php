@@ -30,7 +30,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="{{ route('suppliers.index') }}">Suppliers</a></li>
-                        <li><a class="dropdown-item" href="{{-- route('orders.index') --}}">Orders</a></li>
+                        <li><a class="dropdown-item" href="{{ route('orders.index') }}">Orders</a></li>
                     </ul>
                 </li>
             </ul>
