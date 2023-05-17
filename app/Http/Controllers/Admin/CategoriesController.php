@@ -16,7 +16,7 @@ class CategoriesController extends Controller
 
     public function index() : View | Application | Factory
     {
-        $categories = Category::paginate(10);
+        $categories = Category::withCount('articles')->paginate(10);
 
         return view('admin.categories.index', compact('categories'));
     }

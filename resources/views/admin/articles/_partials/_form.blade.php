@@ -20,7 +20,7 @@
         <select id="category_id" name="category_id" class="form-select {{ $errors->has("category_id") ? 'is-invalid' : '' }}">
             <option value>Choose category</option>
             @foreach($categories as $category)
-                <option value="{{ $category->id }}" {{ $category->id == $article->category_id ? 'selected' : '' }}>{{ $category->name }}</option>
+                <option value="{{ $category->id }}" {{ isset($article) && $category->id == $article->category_id ? 'selected' : '' }}>{{ $category->name }}</option>
             @endforeach
         </select>
         @include('admin._partials._error', [ 'column' => "category_id" ])
@@ -30,7 +30,7 @@
         <label for="tags" class="form-label">Tags</label>
         <select id="tags" name="tags" multiple class="form-select {{ $errors->has("tags") ? 'is-invalid' : '' }}">
             @foreach($tags as $tag)
-                <option value="{{ $tag->id }}" {{ $article->tags->contains('id', $tag->id) ? 'selected' : '' }}>{{ $tag->name }}</option>
+                <option value="{{ $tag->id }}" {{ isset($article) && $article->tags->contains('id', $tag->id) ? 'selected' : '' }}>{{ $tag->name }}</option>
             @endforeach
         </select>
         @include('admin._partials._error', [ 'column' => "tags" ])

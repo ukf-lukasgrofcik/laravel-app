@@ -3,7 +3,7 @@
 @section('title', 'Login')
 
 @section('content')
-    <div class="card mx-auto mt-5 w-25">
+    <div class="card shadow-lg mx-auto mt-5 w-25 border-0">
         <div class="card-body">
             <h5 class="card-title text-center">{{ env('APP_NAME') }}</h5>
             <h6 class="card-subtitle mb-2 text-muted text-center">Login</h6>

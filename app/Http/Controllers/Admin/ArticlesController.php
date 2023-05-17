@@ -18,7 +18,7 @@ class ArticlesController extends Controller
 
     public function index() : View | Application | Factory
     {
-        $articles = Article::paginate(10);
+        $articles = Article::with([ 'category', 'tags' ])->paginate(10);
 
         return view('admin.articles.index', compact('articles'));
     }

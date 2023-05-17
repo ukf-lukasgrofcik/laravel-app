@@ -4,6 +4,7 @@
         <th>#</th>
         <th>Name</th>
         <th>Description</th>
+        <th>Articles</th>
         <th>Actions</th>
     </tr>
     </thead>
@@ -13,6 +14,7 @@
             <td>{{ $tag->id }}</td>
             <td>{{ $tag->name }}</td>
             <td>{{ str($tag->description)->limit(64) }}</td>
+            <td>{{ $tag->articles_count }}</td>
             <td>
                 <div class="dropdown">
                     <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">

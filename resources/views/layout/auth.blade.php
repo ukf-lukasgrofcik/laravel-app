@@ -9,7 +9,7 @@
 
     <link rel="stylesheet" href="{{ asset('css/auth.min.css') }}">
 </head>
-<body>
+<body class="bg-secondary">
 
     @yield('content')
 
