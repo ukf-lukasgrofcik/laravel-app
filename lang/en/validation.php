@@ -191,6 +191,14 @@ return [
         'tags' => 'Tags',
         'tags.*' => 'Tag item',
         'content' => 'Content',
+        'address' => 'Address',
+        'city' => 'City',
+        'postal_code' => 'Postal Code',
+        'phone' => 'Phone',
+        'business_id' => 'Business ID',
+        'tax_id' => 'Tax ID',
+        'vat_registration_number' => 'Vat Registration Number',
+        'iban' => 'IBAN',
     ],
 
 ];

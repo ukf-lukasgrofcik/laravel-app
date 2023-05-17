@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\CategoriesController;
 use App\Http\Controllers\Admin\TagsController;
 use App\Http\Controllers\Admin\ArticlesController;
+use App\Http\Controllers\Admin\SuppliersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +34,10 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::resource('categories', CategoriesController::class)->except([ 'show' ]);
     Route::resource('tags', TagsController::class)->except([ 'show' ]);
     Route::resource('articles', ArticlesController::class)->except([ 'show' ]);
+
+    // Supplies
+    Route::resource('suppliers', SuppliersController::class)->except([ 'show' ]);
+
 });
 
 Route::get('/login', [ LoginController::class, 'form' ]);
