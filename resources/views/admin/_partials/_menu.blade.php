@@ -39,7 +39,7 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item dropdown">
                         <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <span class="me-2">Supplies</span>
+                            <span class="me-2">{{ auth()->user()->full_name }}</span>
                             <i class="fa-regular fa-circle-user fa-xl"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">

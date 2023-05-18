@@ -19,6 +19,7 @@ mix
     .scripts([
         'resources/js/jquery-3.7.0.min.js',
         'resources/js/bootstrap.bundle.min.js',
+        'resources/js/apexcharts.js',
     ], 'public/js/admin.min.js')
 
     .styles([

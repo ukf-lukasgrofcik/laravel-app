@@ -25,6 +25,7 @@
             initOrderItems();
             initOrderItemPricesParser();
             initOrderPriceVatParser();
+            initCharts();
         });
 
         function initConfirmDeleteModal() {
@@ -111,6 +112,38 @@
 
             prices.find('input[name="vat"]').val(vat);
             prices.find('input[name="price_vat"]').val(price_vat);
+        }
+
+        function initCharts() {
+            ColumnChart("#chart-suppliers-with-most-orders", "Most orders by suppliers", "Orders");
+            ColumnChart("#chart-suppliers-with-most-profit", "Most profit by suppliers", "Profit (€)");
+        }
+
+        function ColumnChart(id, title, series) {
+            let data = [];
+
+            $(id).children().each(function () {
+                data.push({
+                    x: $(this).data('label'),
+                    y: $(this).data('amount'),
+                });
+            });
+
+            let options = {
+                chart: { type: 'bar' },
+                series: [{ name: series, data }],
+                title: {
+                    text: title,
+                    align: 'center',
+                },
+                tooltip: {
+                    enabled: true,
+                },
+            };
+
+            let chart = new ApexCharts(document.querySelector(id), options);
+
+            chart.render();
         }
     </script>
 
