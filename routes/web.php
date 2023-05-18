@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\TagsController;
 use App\Http\Controllers\Admin\ArticlesController;
 use App\Http\Controllers\Admin\SuppliersController;
 use App\Http\Controllers\Admin\OrdersController;
+use App\Http\Controllers\Admin\SettingsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,12 @@ Route::get('/', function () {
 
 Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/', [ DashboardController::class, 'index' ])->name('dashboard.index');
+
+    // Settings
+    Route::get('/settings/profile', [ SettingsController::class, 'profile' ])->name('settings.profile');
+    Route::post('/settings/profile', [ SettingsController::class, 'profile_submit' ])->name('settings.profile.submit');
+    Route::get('/settings/password', [ SettingsController::class, 'password' ])->name('settings.password');
+    Route::post('/settings/password', [ SettingsController::class, 'password_submit' ])->name('settings.password.submit');
 
     // Users
     Route::resource('users', UsersController::class)->except([ 'show' ]);
