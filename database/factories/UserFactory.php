@@ -26,4 +26,13 @@ class UserFactory extends Factory
         ];
     }
 
+    public function role(string $role) : Factory
+    {
+        return $this->state(function (array $attributes) use ($role) {
+            return [
+                'role' => $role,
+            ];
+        });
+    }
+
 }

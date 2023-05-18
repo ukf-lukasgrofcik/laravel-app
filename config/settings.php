@@ -7,6 +7,9 @@ return [
      */
     'format' => [
         'admin' => 'Admin',
+        'author' => 'Author',
+        'supply_coordinator' => 'Supply Coordinator',
+        'accountant' => 'Accountant',
     ],
 
 ];

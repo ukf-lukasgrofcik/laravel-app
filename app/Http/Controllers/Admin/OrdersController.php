@@ -17,7 +17,7 @@ class OrdersController extends Controller
 
     public function index() : View | Application | Factory
     {
-        $orders = Order::withCount('items')->paginate(10);
+        $orders = Order::withCount('items')->with([ 'supplier' ])->paginate(10);
 
         return view('admin.orders.index', compact('orders'));
     }
