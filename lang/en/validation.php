@@ -199,6 +199,12 @@ return [
         'tax_id' => 'Tax ID',
         'vat_registration_number' => 'Vat Registration Number',
         'iban' => 'IBAN',
+        'supplier_id' => 'Supplier',
+        'items' => 'Items',
+        'items.*.name' => 'Name',
+        'items.*.price' => 'Price',
+        'items.*.quantity' => 'Quantity',
+        'items.*.full_price' => 'Full price',
     ],
 
 ];

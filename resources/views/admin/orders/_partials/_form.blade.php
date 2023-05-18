@@ -49,7 +49,13 @@
     </div>
 
     <div id="order-items">
-        @include('admin.orders._partials._order_item_pattern', [ 'index' => 0 ])
+        @if($items = old('items', $order->items ?? false))
+            @foreach($items as $index => $item)
+                @include('admin.orders._partials._order_item_pattern', [ 'index' => $index, 'item' => $item ])
+            @endforeach
+        @else
+            @include('admin.orders._partials._order_item_pattern', [ 'index' => 0 ])
+        @endif
     </div>
 
     <div class="row mt-3">
@@ -60,7 +66,35 @@
     </div>
 </div>
 
-<div class="row mt-3">
+<div class="row mt-3 order-prices">
+    <div class="col-sm-3">
+        <label for="price" class="form-label">Price (€)</label>
+        <input type="text" name="price" class="form-control {{ $errors->has("price") ? 'is-invalid' : '' }}" id="price" value="{{ $order->price ?? '' }}" readonly>
+        @include('admin._partials._error', [ 'column' => "price" ])
+    </div>
+
+    <div class="col-sm-3">
+        <label class="form-label" for="has_vat">Vat</label>
+        <div class="form-check">
+            <input type="checkbox" name="has_vat" class="form-check-input {{ $errors->has("has_vat") ? 'is-invalid' : '' }}" id="published" {{ old('has_vat', $order->vat ?? 0) ? 'checked' : '' }}>
+            @include('admin._partials._error', [ 'column' => "has_vat" ])
+        </div>
+    </div>
+
+    <div class="col-sm-3">
+        <label for="vat" class="form-label">Vat (€)</label>
+        <input type="text" name="vat" class="form-control {{ $errors->has("vat") ? 'is-invalid' : '' }}" id="vat" value="{{ $order->vat ?? '' }}" readonly>
+        @include('admin._partials._error', [ 'column' => "vat" ])
+    </div>
+
+    <div class="col-sm-3">
+        <label for="price_vat" class="form-label">Price Vat (€)</label>
+        <input type="text" name="price_vat" class="form-control {{ $errors->has("price_vat") ? 'is-invalid' : '' }}" id="price_vat" value="{{ $order->price_vat ?? '' }}" readonly>
+        @include('admin._partials._error', [ 'column' => "price_vat" ])
+    </div>
+</div>
+
+<div class="row mt-3 mb-3">
     <div class="col-sm-12">
         <button type="submit" class="btn btn-success">Save</button>
     </div>

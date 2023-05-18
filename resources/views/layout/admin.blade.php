@@ -23,7 +23,8 @@
             initConfirmDeleteModal();
             initOrderSupplierSelect();
             initOrderItems();
-            initOrderItemPriceParser();
+            initOrderItemPricesParser();
+            initOrderPriceVatParser();
         });
 
         function initConfirmDeleteModal() {
@@ -60,32 +61,56 @@
 
                 copy.attr('data-index', index);
                 copy.find(`label[for="items[][name]"]`).attr('for', `items[${index}][name]`);
-                copy.find(`input[name="items[][name]"]`).attr('name', `items[${index}][name]`).attr('id', `items[${index}][name]`);
+                copy.find(`input[id="items[][name]"]`).attr('name', `items[${index}][name]`).attr('id', `items[${index}][name]`);
                 copy.find(`label[for="items[][price]"]`).attr('for', `items[${index}][price]`);
-                copy.find(`input[name="items[][price]"]`).attr('name', `items[${index}][price]`).attr('id', `items[${index}][price]`).attr('data-index', index);
+                copy.find(`input[id="items[][price]"]`).attr('name', `items[${index}][price]`).attr('id', `items[${index}][price]`).attr('data-index', index);
                 copy.find(`label[for="items[][quantity]"]`).attr('for', `items[${index}][quantity]`);
-                copy.find(`input[name="items[][quantity]"]`).attr('name', `items[${index}][quantity]`).attr('id', `items[${index}][quantity]`).attr('data-index', index);
+                copy.find(`input[id="items[][quantity]"]`).attr('name', `items[${index}][quantity]`).attr('id', `items[${index}][quantity]`).attr('data-index', index);
                 copy.find(`label[for="items[][full_price]"]`).attr('for', `items[${index}][full_price]`);
-                copy.find(`input[name="items[][full_price]"]`).attr('name', `items[${index}][full_price]`).attr('id', `items[${index}][full_price]`);
+                copy.find(`input[id="items[][full_price]"]`).attr('name', `items[${index}][full_price]`).attr('id', `items[${index}][full_price]`);
 
                 order_items.append(copy);
-                initOrderItemPriceParser();
+                initOrderItemPricesParser();
             });
 
             $('#order-items-remove').click(function () {
-                $('#order-items').children().last().remove();
+                let items = $('#order-items').children();
+
+                if (items.length > 1) items.last().remove();
             });
         }
 
-        function initOrderItemPriceParser() {
+        function initOrderItemPricesParser() {
             $(document).find('.order-item-price-parse').change(function () {
                 let index = $(this).data('index');
 
                 let price = $(`input[name="items[${index}][price]"]`).val();
                 let quantity = $(`input[name="items[${index}][quantity]"]`).val();
 
-                if (price * 1 && quantity * 1) $(`input[name="items[${index}][full_price]"]`).val(Number(price * quantity).toFixed(2));
+                let full_price = price == "" ? "" : Number(price * quantity).toFixed(2);
+
+                $(`input[name="items[${index}][full_price]"]`).val(full_price);
+                calculatePrices();
             });
+        }
+
+        function initOrderPriceVatParser() {
+            $('.order-prices input[name="has_vat"]').change(calculatePrices);
+        }
+
+        function calculatePrices() {
+            let prices = $('.order-prices');
+            let price = 0;
+            $('.order-item-full-price').each( (_,e) => price += Number($(e).val()) );
+            prices.find('input[name="price"]').val( Number(price).toFixed(2) );
+
+            let vat_checked = prices.find('input[name="has_vat"]').is(':checked');
+
+            let vat = vat_checked ? Number(price * 0.2).toFixed(2) : '';
+            let price_vat = vat_checked ? Number(1 * price + 1 * vat).toFixed(2) : '';
+
+            prices.find('input[name="vat"]').val(vat);
+            prices.find('input[name="price_vat"]').val(price_vat);
         }
     </script>
 

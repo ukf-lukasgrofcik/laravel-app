@@ -38,4 +38,14 @@ class Order extends Model
         return $this->hasMany(OrderItem::class);
     }
 
+    public function getFormattedPriceAttribute() : string
+    {
+        return number_format($this->price, 2, '.', ' ');
+    }
+
+    public function getFormattedPriceVatAttribute() : string | null
+    {
+        return $this->price_vat ? number_format($this->price_vat, 2, '.', ' ') : null;
+    }
+
 }

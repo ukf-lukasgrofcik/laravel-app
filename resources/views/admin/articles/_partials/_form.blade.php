@@ -8,9 +8,11 @@
     </div>
 
     <div class="col-sm-6">
-        <input type="checkbox" name="published" class="form-check-input {{ $errors->has("published") ? 'is-invalid' : '' }}" id="published" {{ old('published', $article->published ?? 0) ? 'checked' : '' }}>
-        <label class="form-check-label" for="published">Published</label>
-        @include('admin._partials._error', [ 'column' => "published" ])
+        <label class="form-label" for="published">Published</label>
+        <div class="form-check">
+            <input type="checkbox" name="published" class="form-check-input {{ $errors->has("published") ? 'is-invalid' : '' }}" id="published" {{ old('published', $article->published ?? 0) ? 'checked' : '' }}>
+            @include('admin._partials._error', [ 'column' => "published" ])
+        </div>
     </div>
 </div>
 
@@ -46,7 +48,7 @@
     </div>
 </div>
 
-<div class="row mt-3">
+<div class="row mt-3 mb-3">
     <div class="col-sm-12">
         <button type="submit" class="btn btn-success">Save</button>
     </div>
