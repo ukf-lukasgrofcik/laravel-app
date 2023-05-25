@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\ArticlesController;
 use App\Http\Controllers\Admin\SuppliersController;
 use App\Http\Controllers\Admin\OrdersController;
 use App\Http\Controllers\Admin\SettingsController;
+use App\Http\Controllers\Admin\InvoicesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +47,9 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     // Supplies
     Route::resource('suppliers', SuppliersController::class)->except([ 'show' ]);
     Route::resource('orders', OrdersController::class)->except([ 'show' ]);
+
+    // Billing
+    Route::resource('invoices', InvoicesController::class)->except([ 'show' ]);
 
 });
 

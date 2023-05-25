@@ -4,7 +4,7 @@
         <th>#</th>
         <th>Name</th>
         <th>Full address</th>
-        <th>Business ID</th>
+        <th style="min-width: 105px;">Business ID</th>
         <th style="min-width: 90px;">Contact</th>
         <th>Actions</th>
     </tr>

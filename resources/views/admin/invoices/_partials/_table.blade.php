@@ -2,29 +2,29 @@
     <thead>
     <tr class="table-secondary">
         <th>Number</th>
+        <th>Order Number</th>
         <th>Supplier</th>
-        <th>Items</th>
         <th>Price (€)</th>
         <th>Price VAT (€)</th>
-        <th>Invoice</th>
+        <th>Due date</th>
+        <th>Payment</th>
         <th>Actions</th>
     </tr>
     </thead>
     <tbody>
-    @forelse($orders as $order)
-        <tr>
-            <td>{{ $order->number }}</td>
-            <td>{{ $order->supplier->name }}</td>
-            <td>{{ $order->items_count }}</td>
-            <td>{{ $order->formatted_price }}</td>
-            <td>{{ $order->formatted_price_vat ?? '-' }}</td>
+    @forelse($invoices as $invoice)
+        <tr class="{{ $invoice->color ? "bg-$invoice->color" : '' }}" style="--bs-bg-opacity: 0.7;">
+            <td>{{ $invoice->number }}</td>
+            <td>{{ $invoice->order->number }}</td>
+            <td>{{ $invoice->order->supplier->name }}</td>
+            <td>{{ $invoice->order->formatted_price }}</td>
+            <td>{{ $invoice->order->formatted_price_vat ?? '-' }}</td>
+            <td>{{ $invoice->formatted_due_date }}</td>
             <td>
-                @if($order->invoice)
-                    <a href="{{ route('invoices.edit', $order->id) }}">
-                        {{ $order->invoice->number }}
-                    </a>
+                @if($invoice->payment_date)
+                    {{ $invoice->formatted_payment_date }}
                 @else
-                    <i>No invoice</i>
+                    <i>Unpaid</i>
                 @endif
             </td>
             <td>
@@ -33,16 +33,13 @@
                         Actions
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{{ route('orders.edit', $order) }}">Edit</a></li>
-                        @if(! $order->invoice)
-                            <li><a class="dropdown-item" href="{{ route('invoices.create', [ 'order_id' => $order->id ]) }}">Create invoice</a></li>
-                        @endif
+                        <li><a class="dropdown-item" href="{{ route('invoices.edit', $invoice) }}">Edit</a></li>
                         <li>
-                            <form action="{{ route('orders.destroy', $order) }}" method="post">
+                            <form action="{{ route('invoices.destroy', $invoice) }}" method="post">
                                 @method('DELETE')
                                 @csrf
                                 <button type="button" class="dropdown-item confirm-delete"
-                                        data-entity="{{ "Order $order->number" }}">
+                                        data-entity="{{ "Invoice $invoice->number" }}">
                                     Delete
                                 </button>
                             </form>
@@ -59,4 +56,4 @@
     </tbody>
 </table>
 
-{{ $orders->links() }}
+{{ $invoices->links() }}
